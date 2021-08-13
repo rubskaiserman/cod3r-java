@@ -10,6 +10,7 @@ public class Questap07 {
         Double dobroArea = 2 * lado * lado;
         System.out.printf("O dobro da área do quadrado de lado %.2f m é %.2f m²", lado, dobroArea);
         System.out.println();
+        scan.close();
     }
     
 }
