@@ -28,6 +28,8 @@ public class Desafio02 {
         System.out.printf("Salário médio: %.2f", (a + b + c)/3);
         System.out.println();
 
+        scan.close();
+
     }
     
 }
