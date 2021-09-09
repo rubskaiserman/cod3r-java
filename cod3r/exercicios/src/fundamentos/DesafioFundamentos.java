@@ -19,6 +19,7 @@ public class DesafioFundamentos {
         res = op.equals("%") ? a % b : res;
 
         System.out.println(res);
-
+        //NOTA: Foi solicitado que fossem utilizadas apenas conhecimentos já passados no curso.
+        //PS: I was asked to only use what was already taught in the course until the moment
     }
 }
