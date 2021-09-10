@@ -23,6 +23,8 @@ public class Desafio03 {
         System.out.println("Total de notas: " + total);
         System.out.printf("Média: %.2f", soma/total);
         System.out.println();
+
+        scan.close();
     }
     
 }
