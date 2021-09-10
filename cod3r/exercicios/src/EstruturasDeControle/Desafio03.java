@@ -11,12 +11,14 @@ public class Desafio03 {
         while(val != -1){
             System.out.print("Insira um valor: ");
             val = scan.nextDouble();
-            if((val < 0 || val > 10) && val != -1){
-                System.out.println("Valor inválido!");
-                System.out.println("Tente novamente.");
-            } else {
-                soma += val;
-                total ++;
+            if(val != -1){
+                if(val < 0 || val > 10){
+                    System.out.println("Valor inválido!");
+                    System.out.println("Tente novamente.");
+                } else{
+                    soma += val;
+                    total ++;
+                }
             }
             System.out.println();
         }
