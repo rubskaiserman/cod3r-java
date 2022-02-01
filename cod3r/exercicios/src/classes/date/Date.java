@@ -6,10 +6,11 @@ public class Date {
     int day;
 
     public Date(){
-        this.day = 1;
-        this.month = 1;
-        this.year = 1970;
-        //Dia zero do calendário UNIX   
+        // this.day = 1;
+        // this.month = 1;
+        // this.year = 1970;
+        //Dia zero do calendário UNIX  
+        this(1970, 1, 1); 
 
     }
     public Date(int year, int month, int day){
