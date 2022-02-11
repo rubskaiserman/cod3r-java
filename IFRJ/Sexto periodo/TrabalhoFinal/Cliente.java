@@ -7,20 +7,21 @@ import java.sql.Statement;
 
 
 public class Cliente {
-    private int _cpf;
+    private String _cpf;
     private String _nome;
     private String _email;
     private String _plano;
     private String _dataInscricao;
     
     
-    public Cliente(int cpf, String nome, String email, String dataInscricao, String plano){
+    public Cliente(String cpf, String nome, String email, String dataInscricao, String plano){
         this._cpf = cpf;
         this._nome = nome;
+        this._email = email;
         this._dataInscricao = dataInscricao;
         this._plano = plano;
     }
-    public int getCpf(){
+    public String getCpf(){
         return this._cpf;
     }
     public String getNome(){
@@ -37,12 +38,12 @@ public class Cliente {
     }
 
     public static void registrarCliente(Statement statement, Cliente cliente) throws SQLException{
-        String sqlString = String.format("INSERT INTO clientes(cpf_cliente, nome, email, data_inscricao, plano) VALUES(%d, %s, %s, %s, %s)", cliente._cpf, cliente._nome, cliente._email, cliente._dataInscricao, cliente._plano); 
+        String sqlString = String.format("INSERT INTO clientes(cpf_cliente, nome, email, data_inscricao, plano) VALUES('%s', '%s', '%s', '%s', '%s')", cliente._cpf, cliente._nome, cliente._email, cliente._dataInscricao, cliente._plano); 
         statement.execute(sqlString);
 
     }
-    public static void removerCliente(Statement statement, int cpf) throws SQLException{
-        String sqlString = String.format("DELETE FROM clientes WHERE cpf_cliente = %d", cpf); 
+    public static void removerCliente(Statement statement, String cpf) throws SQLException{
+        String sqlString = String.format("DELETE FROM clientes WHERE cpf_cliente = %s", cpf); 
         statement.execute(sqlString);
 
     }
