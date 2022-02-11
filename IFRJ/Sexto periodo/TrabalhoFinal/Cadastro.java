@@ -2,6 +2,7 @@ package TrabalhoFinal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -41,6 +42,7 @@ public class Cadastro{
 
 
     private static Cliente criarCliente(Scanner scanner){
+        scanner.nextLine();
         System.out.print("CPF do cliente: ");
         String cpf = scanner.nextLine();
         System.out.println();
@@ -59,6 +61,8 @@ public class Cadastro{
     }
     public static void main(String[] args) {
         try {  
+            String cpf;
+
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/cadastro_clientes", "registrador", "loucuras_de_amor");
             Statement cmd = conn.createStatement();
             Scanner scan = new Scanner(System.in);
@@ -71,10 +75,34 @@ public class Cadastro{
 
                     break;
                 case 2:
-                System.out.print("Insira o cpf do cliente (Apenas os números): ");
-                String cpf = scan.next();
-                Cliente.removerCliente(cmd, cpf);
-
+                    System.out.print("Insira o cpf do cliente (Apenas os números): ");
+                    cpf = scan.next();
+                    Cliente.removerCliente(cmd, cpf);
+                    break;
+                case 3:
+                    System.out.print("Insira o cpf do cliente (Apenas os números): ");
+                    cpf = scan.next();
+                    System.out.println();
+                    System.out.print("Insira o dado que deseja modificar(cpf_cliente, email, nome, plano, data_inscricao): ");
+                    String coluna = scan.next();
+                    System.out.println();
+                    System.out.print("Insira o novo valor: ");
+                    scan.nextLine();
+                    String novoValor = scan.nextLine();
+                    Cliente.modificarCliente(cmd, cpf, coluna, novoValor);
+                    break;
+                case 4:
+                    System.out.print("Insira o cpf do cliente (Apenas os números): ");
+                    cpf = scan.next();
+                    ResultSet res = Cliente.selectCliente(cmd, cpf);
+                    System.out.println();
+                    System.out.println("_____________________________________________________________________________");
+                    System.out.printf("cpf: %s \n", res.next());
+                    System.out.printf("Nome: %s \n", res.next());
+                    System.out.printf("Email: %s \n", res.next());
+                    System.out.printf("Plano: %s \n", res.next());
+                    System.out.printf("DataInscriçao: %s \n", res.next());
+                    break;
             }
 
 

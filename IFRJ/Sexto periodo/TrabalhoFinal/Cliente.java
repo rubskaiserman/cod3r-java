@@ -38,25 +38,28 @@ public class Cliente {
     }
 
     public static void registrarCliente(Statement statement, Cliente cliente) throws SQLException{
-        String sqlString = String.format("INSERT INTO clientes(cpf_cliente, nome, email, data_inscricao, plano) VALUES('%s', '%s', '%s', '%s', '%s')", cliente._cpf, cliente._nome, cliente._email, cliente._dataInscricao, cliente._plano); 
+        String sqlString = String.format("INSERT INTO clientes(cpf_cliente, nome, email, data_inscricao, plano) VALUES('%s', '%s', '%s', '%s', '%s');", cliente._cpf, cliente._nome, cliente._email, cliente._dataInscricao, cliente._plano); 
         statement.execute(sqlString);
 
     }
     public static void removerCliente(Statement statement, String cpf) throws SQLException{
-        String sqlString = String.format("DELETE FROM clientes WHERE cpf_cliente = %s", cpf); 
+        String sqlString = String.format("DELETE FROM clientes WHERE cpf_cliente = '%s';", cpf); 
         statement.execute(sqlString);
 
     }
-    public static void modificarCliente(Statement statement, int cpf, String coluna, String novoValor) throws SQLException{
-        String sqlString = String.format("UPDATE clientes SET %s = %s WHERE cpf_cliente=%s", coluna, novoValor, cpf); 
+    public static void modificarCliente(Statement statement, String cpf, String coluna, String novoValor) throws SQLException{
+        String sqlString = String.format("UPDATE clientes SET '%s' = '%s' WHERE cpf_cliente='%s';", coluna, novoValor, cpf); 
         statement.execute(sqlString);
     }
-    public static void getAllClients(Statement statement){
-        //Retorna todos os clientes
-        
+    public static ResultSet getAllClients(Statement statement) throws SQLException{
+        String sqlString = "SELECT * FROM clientes;";
+        statement.execute(sqlString);
+        ResultSet resultSet = statement.getResultSet();
+
+        return resultSet;
     }
-    public ResultSet selectCliente(Statement statement, int cpf) throws SQLException{
-        String sqlString = String.format("SELECT FROM clientes WHERE cpf_cliente = %d", cpf); 
+    public static ResultSet selectCliente(Statement statement, String cpf) throws SQLException{
+        String sqlString = String.format("SELECT FROM clientes WHERE cpf_cliente = '%s'", cpf); 
         statement.execute(sqlString);
         ResultSet clienteSet = statement.getResultSet();
         // Cliente cliente = new Cliente(clientSet[])
