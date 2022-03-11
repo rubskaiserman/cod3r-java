@@ -20,5 +20,12 @@ public class Cliente {
     public void setListaCompra(ArrayList<Compra> listaCompra) {
         this.listaCompra = listaCompra;
     }
+    public double obterValorTotal(){
+        double valorTotal = 0;
+        for(Compra compra: listaCompra){
+            valorTotal += compra.getValorCompra();
+        }
+        return valorTotal;
+    }
 
 }

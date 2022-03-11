@@ -19,11 +19,16 @@ public class Teste {
         ArrayList<Compra> listaCompra = new ArrayList<>();
         listaCompra.add(compra);
 
+        listaItem.remove(item3);
+        compra = new Compra(listaItem);
+        listaCompra.add(compra);
+
         c1.setListaCompra(listaCompra);
 
-        for(Compra compras: listaCompra){
-            System.out.println(compras.getValorCompra());
-        }
+        // for(Compra compras: listaCompra){
+        //     System.out.println(compras.getValorCompra());
+        // }
+        System.out.println(c1.obterValorTotal());
     }
 
 
