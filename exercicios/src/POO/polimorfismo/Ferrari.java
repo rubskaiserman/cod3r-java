@@ -7,7 +7,6 @@ public class Ferrari extends Carro {
     public Ferrari(int ano, String modelo){
         super(320);
         super.fatorAceleracao = 15;
-        
     }
     
     public int getAno() {
